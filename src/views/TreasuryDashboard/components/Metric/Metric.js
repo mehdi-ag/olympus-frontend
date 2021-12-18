@@ -75,7 +75,10 @@ export const GOHMPrice = () => {
   const gOhmPrice = useSelector(state => state.app.marketPrice * state.app.currentIndex);
   return (
     <Metric
-      metric={wsOhmPrice && formatCurrency(wsOhmPrice, 2)}
+      className="metric wsoprice"
+      label={t`gOHM Price`}
+      metric={gOhmPrice && formatCurrency(gOhmPrice, 2)}
+      isLoading={gOhmPrice ? false : true}
       {...sharedProps}
       tooltip={`gOHM = sOHM * index\n\nThe price of gOHM is equal to the price of OHM multiplied by the current index`}
     />
