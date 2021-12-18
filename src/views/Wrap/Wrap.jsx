@@ -34,8 +34,7 @@ import { error } from "../../slices/MessagesSlice";
 import { NETWORKS } from "../../constants";
 import { ethers } from "ethers";
 import "../Stake/stake.scss";
-import MetricCollection from "src/components/Metric/MetricCollection";
-import Metric from "src/components/Metric/Metric";
+import { Metric, MetricCollection } from "src/components/Metric";
 import { t } from "@lingui/macro";
 import { useAppSelector } from "src/hooks/index.ts";
 import WrapCrossChain from "./WrapCrossChain.tsx";
@@ -256,57 +255,58 @@ function Wrap() {
       );
   };
 
-  return (
-    <div id="stake-view" className="wrapper">
-      <Zoom in={true} onEntered={() => setZoomed(true)}>
-        <Paper className={`ohm-card`}>
-          <Grid container direction="column" spacing={2}>
-            <Grid item>
-              <div className="card-header">
-                <Typography variant="h5">Wrap / Unwrap</Typography>
-                <Link
-                  className="migrate-sohm-button"
-                  style={{ textDecoration: "none" }}
-                  href={
-                    assetTo === "wsOHM"
-                      ? "https://docs.olympusdao.finance/main/contracts/tokens#wsohm"
-                      : "https://docs.olympusdao.finance/main/contracts/tokens#gohm"
-                  }
-                  aria-label="wsohm-wut"
-                  target="_blank"
-                >
-                  <Typography>gOHM</Typography>{" "}
-                  <SvgIcon component={ArrowUp} color="primary" style={{ marginLeft: "5px", width: ".8em" }} />
-                </Link>
-              </div>
-            </Grid>
-
-            <Grid item>
-              <MetricCollection>
-                <Metric
-                  label={t`sOHM Price`}
-                  metric={formatCurrency(sOhmPrice, 2)}
-                  isLoading={sOhmPrice ? false : true}
-                />
-                <Metric
-                  label={t`Current Index`}
-                  metric={trim(currentIndex, 1)}
-                  isLoading={currentIndex ? false : true}
-                />
-                <Metric
-                  label={t`${assetTo} Price`}
-                  metric={formatCurrency(wsOhmPrice, 2)}
-                  isLoading={wsOhmPrice ? false : true}
-                  tooltip={`${assetTo} = sOHM * index\n\nThe price of ${assetTo} is equal to the price of OHM multiplied by the current index`}
-                />
-              </MetricCollection>
-            </Grid>
-
-            <div className="staking-area">
-              {!address ? (
-                <div className="stake-wallet-notification">
-                  <div className="wallet-menu" id="wallet-menu">
-                    {modalButton}
+  if (!isAvax) {
+    return (
+      <div id="stake-view" className="wrapper">
+        <Zoom in={true} onEntered={() => setZoomed(true)}>
+          <Paper className={`ohm-card`}>
+            <Grid container direction="column" spacing={2}>
+              <Grid item>
+                <div className="card-header">
+                  <Typography variant="h5">Wrap / Unwrap</Typography>
+                  <Link
+                    className="migrate-sohm-button"
+                    style={{ textDecoration: "none" }}
+                    href={
+                      assetTo === "wsOHM"
+                        ? "https://docs.olympusdao.finance/main/contracts/tokens#wsohm"
+                        : "https://docs.olympusdao.finance/main/contracts/tokens#gohm"
+                    }
+                    aria-label="wsohm-wut"
+                    target="_blank"
+                  >
+                    <Typography>gOHM</Typography>{" "}
+                    <SvgIcon component={ArrowUp} color="primary" style={{ marginLeft: "5px", width: ".8em" }} />
+                  </Link>
+                </div>
+              </Grid>
+              <Grid item>
+                <MetricCollection>
+                  <Metric
+                    label={`sOHM ${t`Price`}`}
+                    metric={formatCurrency(sOhmPrice, 2)}
+                    isLoading={sOhmPrice ? false : true}
+                  />
+                  <Metric
+                    label={t`Current Index`}
+                    metric={trim(currentIndex, 1)}
+                    isLoading={currentIndex ? false : true}
+                  />
+                  <Metric
+                    label={`${assetTo} ${t`Price`}`}
+                    metric={formatCurrency(gOhmPrice, 2)}
+                    isLoading={gOhmPrice ? false : true}
+                    tooltip={`${assetTo} = sOHM * index\n\nThe price of ${assetTo} is equal to the price of OHM multiplied by the current index`}
+                  />
+                </MetricCollection>
+              </Grid>
+              <div className="staking-area">
+                {!address ? (
+                  <div className="stake-wallet-notification">
+                    <div className="wallet-menu" id="wallet-menu">
+                      {modalButton}
+                    </div>
+                    <Typography variant="h6">Connect your wallet</Typography>
                   </div>
                 ) : (
                   <>
