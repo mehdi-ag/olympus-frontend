@@ -1,5 +1,6 @@
 import { Button, SvgIcon, ButtonProps, Theme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { HTMLAttributeAnchorTarget } from "react";
 import { ReactComponent as ArrowUp } from "src/assets/icons/arrow-up.svg";
 
 type Styles = {
@@ -38,8 +39,8 @@ interface props extends ButtonProps {
   text?: string;
   icon?: React.ElementType;
   onClick?: any;
-  startIcon: any;
-  endIcon: any;
+  startIcon?: any;
+  endIcon?: any;
 }
 
 /**
@@ -50,7 +51,8 @@ const ButtonComponent = ({ template = "primary", ...props }: props) => {
   const classes = useStyles({ icon });
   let variant = props.variant;
   let color = props.color;
-  let target;
+  let localProps = {};
+  //let target: HTMLAttributeAnchorTarget = undefined;
   switch (template) {
     case "primary":
       variant = "contained";
@@ -66,7 +68,9 @@ const ButtonComponent = ({ template = "primary", ...props }: props) => {
       break;
   }
   if (props.href) {
-    target = "_blank";
+    localProps = {
+      target: "_blank",
+    };
   }
   const endIcon = props.endIcon || (props.href && ArrowUp) || null;
 
@@ -76,6 +80,7 @@ const ButtonComponent = ({ template = "primary", ...props }: props) => {
       color={color}
       className={`${classes.root} ${props.className}`}
       {...props}
+      {...localProps}
       startIcon={props.startIcon ? <SvgIcon component={props.startIcon} fontSize="large" /> : null}
       endIcon={endIcon && <SvgIcon component={endIcon} fontSize="large" />}
     >
