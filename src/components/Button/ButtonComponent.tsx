@@ -39,8 +39,8 @@ interface props extends ButtonProps {
   text?: string;
   icon?: React.ElementType;
   onClick?: any;
-  startIcon?: any;
-  endIcon?: any;
+  startIcon?: React.ElementType;
+  endIcon?: React.ElementType;
 }
 
 /**
