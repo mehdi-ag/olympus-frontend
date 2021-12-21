@@ -139,6 +139,14 @@ export class EnvHelper {
           URI_LIST = EnvHelper.env.REACT_APP_ETHEREUM_SELF_HOSTED_NODE.split(new RegExp(EnvHelper.whitespaceRegex));
         }
         break;
+      case 595:
+        if (
+          EnvHelper.env.REACT_APP_ETHEREUM_SELF_HOSTED_NODE &&
+          EnvHelper.isNotEmpty(EnvHelper.env.REACT_APP_ETHEREUM_SELF_HOSTED_NODE)
+        ) {
+          URI_LIST = EnvHelper.env.REACT_APP_ETHEREUM_SELF_HOSTED_NODE.split(new RegExp(EnvHelper.whitespaceRegex));
+        }
+        break;
       case 42161:
         if (
           EnvHelper.env.REACT_APP_ARBITRUM_SELF_HOSTED_NODE &&

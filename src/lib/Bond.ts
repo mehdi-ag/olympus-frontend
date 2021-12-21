@@ -11,6 +11,7 @@ import React from "react";
 export enum NetworkID {
   Mainnet = 1,
   Testnet = 4,
+  Mandala = 595,
   Arbitrum = 42161,
   ArbitrumTestnet = 421611,
   AvalancheTestnet = 43113,
@@ -30,6 +31,7 @@ export interface BondAddresses {
 export interface NetworkAddresses {
   [NetworkID.Mainnet]?: BondAddresses;
   [NetworkID.Testnet]?: BondAddresses;
+  [NetworkID.Mandala]?: BondAddresses;
   [NetworkID.Arbitrum]?: BondAddresses;
   [NetworkID.ArbitrumTestnet]?: BondAddresses;
   [NetworkID.Avalanche]?: BondAddresses;
@@ -39,6 +41,7 @@ export interface NetworkAddresses {
 export interface Available {
   [NetworkID.Mainnet]: boolean;
   [NetworkID.Testnet]: boolean;
+  [NetworkID.Mandala]: boolean;
   [NetworkID.Arbitrum]: boolean;
   [NetworkID.ArbitrumTestnet]: boolean;
   [NetworkID.Avalanche]: boolean;

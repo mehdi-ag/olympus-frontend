@@ -25,7 +25,8 @@ interface IProtocolMetrics {
 export const loadAppDetails = createAsyncThunk(
   "app/loadAppDetails",
   async ({ networkID, provider }: IBaseAsyncThunk, { dispatch }) => {
-    const protocolMetricsQuery = `
+    try {
+      const protocolMetricsQuery = `
       query {
         _meta {
           block {
@@ -45,85 +46,95 @@ export const loadAppDetails = createAsyncThunk(
           nextDistributedOhm
         }
       }
-    `;
+      `;
 
-    if (networkID !== 1) {
-      provider = NodeHelper.getMainnetStaticProvider();
-      networkID = 1;
-    }
-    const graphData = await apollo<{ protocolMetrics: IProtocolMetrics[] }>(protocolMetricsQuery);
+      console.log("networkIDLaunch: ", networkID);
+      // if (networkID !== 1) {
+      //   provider = NodeHelper.getMainnetStaticProvider();
+      //   networkID = 1;
+      // }
+      const graphData = await apollo<{ protocolMetrics: IProtocolMetrics[] }>(protocolMetricsQuery);
 
-    if (!graphData || graphData == null) {
-      console.error("Returned a null response when querying TheGraph");
-      return;
-    }
+      if (!graphData || graphData == null) {
+        console.error("Returned a null response when querying TheGraph");
+        return;
+      }
 
-    const stakingTVL = parseFloat(graphData.data.protocolMetrics[0].totalValueLocked);
-    // NOTE (appleseed): marketPrice from Graph was delayed, so get CoinGecko price
-    // const marketPrice = parseFloat(graphData.data.protocolMetrics[0].ohmPrice);
-    let marketPrice;
-    try {
-      const originalPromiseResult = await dispatch(
-        loadMarketPrice({ networkID: networkID, provider: provider }),
-      ).unwrap();
-      marketPrice = originalPromiseResult?.marketPrice;
-    } catch (rejectedValueOrSerializedError) {
-      // handle error here
-      console.error("Returned a null response from dispatch(loadMarketPrice)");
-      return;
-    }
+      const stakingTVL = parseFloat(graphData.data.protocolMetrics[0].totalValueLocked);
+      // NOTE (appleseed): marketPrice from Graph was delayed, so get CoinGecko price
+      // const marketPrice = parseFloat(graphData.data.protocolMetrics[0].ohmPrice);
+      let marketPrice;
+      try {
+        const originalPromiseResult = await dispatch(
+          loadMarketPrice({ networkID: networkID, provider: provider }),
+        ).unwrap();
+        marketPrice = originalPromiseResult?.marketPrice;
+      } catch (rejectedValueOrSerializedError) {
+        // handle error here
+        console.error("Returned a null response from dispatch(loadMarketPrice)");
+        return;
+      }
 
-    const marketCap = parseFloat(graphData.data.protocolMetrics[0].marketCap);
-    const circSupply = parseFloat(graphData.data.protocolMetrics[0].ohmCirculatingSupply);
-    const totalSupply = parseFloat(graphData.data.protocolMetrics[0].totalSupply);
-    const treasuryMarketValue = parseFloat(graphData.data.protocolMetrics[0].treasuryMarketValue);
-    // const currentBlock = parseFloat(graphData.data._meta.block.number);
+      const marketCap = parseFloat(graphData.data.protocolMetrics[0].marketCap);
+      const circSupply = parseFloat(graphData.data.protocolMetrics[0].ohmCirculatingSupply);
+      const totalSupply = parseFloat(graphData.data.protocolMetrics[0].totalSupply);
+      const treasuryMarketValue = parseFloat(graphData.data.protocolMetrics[0].treasuryMarketValue);
+      // const currentBlock = parseFloat(graphData.data._meta.block.number);
 
-    if (!provider) {
-      console.error("failed to connect to provider, please connect your wallet");
+      if (!provider) {
+        console.error("failed to connect to provider, please connect your wallet");
+        return {
+          stakingTVL,
+          marketPrice,
+          marketCap,
+          circSupply,
+          totalSupply,
+          treasuryMarketValue,
+        } as IAppData;
+      }
+      const currentBlock = await provider.getBlockNumber();
+
+      const stakingContract = OlympusStakingv2__factory.connect(addresses[networkID].STAKING_V2, provider);
+      const stakingContractV1 = OlympusStaking__factory.connect(addresses[networkID].STAKING_ADDRESS, provider);
+
+      const sohmMainContract = new ethers.Contract(addresses[networkID].SOHM_V2 as string, sOHMv2, provider) as SOhmv2;
+
+      // Calculating staking
+      console.log("networkID: ", networkID);
+      console.log("stakingContracAddress: ", stakingContract.address);
+      const epoch = await stakingContract.epoch();
+      console.log("epoh: ", epoch);
+      const secondsToEpoch = 6000; // Number(await stakingContract.secondsToNextEpoch());
+      console.log("secondsToEpoch: ", secondsToEpoch);
+      const stakingReward = epoch.distribute;
+      const circ = await sohmMainContract.circulatingSupply();
+      const stakingRebase = Number(stakingReward.toString()) / Number(circ.toString());
+      const fiveDayRate = Math.pow(1 + stakingRebase, 5 * 3) - 1;
+      const stakingAPY = Math.pow(1 + stakingRebase, 365 * 3) - 1;
+
+      // Current index
+      const currentIndex = await stakingContract.index();
+      const currentIndexV1 = await stakingContractV1.index();
+      console.log({ currentIndex, currentIndexV1 });
       return {
+        currentIndex: ethers.utils.formatUnits(currentIndex, "gwei"),
+        currentIndexV1: ethers.utils.formatUnits(currentIndexV1, "gwei"),
+        currentBlock,
+        fiveDayRate,
+        stakingAPY,
         stakingTVL,
-        marketPrice,
+        stakingRebase,
         marketCap,
+        marketPrice,
         circSupply,
         totalSupply,
         treasuryMarketValue,
+        secondsToEpoch,
       } as IAppData;
+    } catch (e) {
+      console.log(e);
+      // debugger;
     }
-    const currentBlock = await provider.getBlockNumber();
-
-    const stakingContract = OlympusStakingv2__factory.connect(addresses[networkID].STAKING_V2, provider);
-    const stakingContractV1 = OlympusStaking__factory.connect(addresses[networkID].STAKING_ADDRESS, provider);
-
-    const sohmMainContract = new ethers.Contract(addresses[networkID].SOHM_V2 as string, sOHMv2, provider) as SOhmv2;
-
-    // Calculating staking
-    const epoch = await stakingContract.epoch();
-    const secondsToEpoch = Number(await stakingContract.secondsToNextEpoch());
-    const stakingReward = epoch.distribute;
-    const circ = await sohmMainContract.circulatingSupply();
-    const stakingRebase = Number(stakingReward.toString()) / Number(circ.toString());
-    const fiveDayRate = Math.pow(1 + stakingRebase, 5 * 3) - 1;
-    const stakingAPY = Math.pow(1 + stakingRebase, 365 * 3) - 1;
-
-    // Current index
-    const currentIndex = await stakingContract.index();
-    const currentIndexV1 = await stakingContractV1.index();
-    return {
-      currentIndex: ethers.utils.formatUnits(currentIndex, "gwei"),
-      currentIndexV1: ethers.utils.formatUnits(currentIndexV1, "gwei"),
-      currentBlock,
-      fiveDayRate,
-      stakingAPY,
-      stakingTVL,
-      stakingRebase,
-      marketCap,
-      marketPrice,
-      circSupply,
-      totalSupply,
-      treasuryMarketValue,
-      secondsToEpoch,
-    } as IAppData;
   },
 );
 

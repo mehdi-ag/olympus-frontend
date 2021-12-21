@@ -80,7 +80,7 @@ function NavContent() {
 
           <div className="dapp-menu-links">
             <div className="dapp-nav" id="navbarNav">
-              {networkId === 1 || networkId === 4 ? (
+              {networkId === 1 || networkId === 4 || networkId === 595 ? (
                 <>
                   <Link
                     component={NavLink}

@@ -45,6 +45,7 @@ export const dai = new StableBond({
   isBondable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: true,
+    [NetworkID.Mandala]: true,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -53,6 +54,7 @@ export const dai = new StableBond({
   isLOLable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: false,
+    [NetworkID.Mandala]: false,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -62,6 +64,7 @@ export const dai = new StableBond({
   isClaimable: {
     [NetworkID.Mainnet]: true,
     [NetworkID.Testnet]: true,
+    [NetworkID.Mandala]: true,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -75,6 +78,10 @@ export const dai = new StableBond({
     [NetworkID.Testnet]: {
       bondAddress: "0xDea5668E815dAF058e3ecB30F645b04ad26374Cf",
       reserveAddress: "0xB2180448f8945C8Cc8AE9809E67D6bd27d8B2f2C",
+    },
+    [NetworkID.Mandala]: {
+      bondAddress: "0x412131331282B0F3F6eC32Be6b3053daE83C7DaF",
+      reserveAddress: "0xE10Be81C121fc5E9CFfFBfA2A3589a96021bD346",
     },
   },
 });
@@ -90,6 +97,7 @@ export const fraxOld = new StableBond({
   isBondable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: false,
+    [NetworkID.Mandala]: false,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -98,6 +106,7 @@ export const fraxOld = new StableBond({
   isLOLable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: false,
+    [NetworkID.Mandala]: false,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -107,6 +116,7 @@ export const fraxOld = new StableBond({
   isClaimable: {
     [NetworkID.Mainnet]: true,
     [NetworkID.Testnet]: true,
+    [NetworkID.Mandala]: true,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -120,6 +130,10 @@ export const fraxOld = new StableBond({
     [NetworkID.Testnet]: {
       bondAddress: "0xF651283543fB9D61A91f318b78385d187D300738",
       reserveAddress: "0x2F7249cb599139e560f0c81c269Ab9b04799E453",
+    },
+    [NetworkID.Mandala]: {
+      bondAddress: "0xf166Aa9dA66403430027eb2D069F74F80961f655",
+      reserveAddress: "0x99076ca7b1E2B182fCeBA3d9FEccBF44742267bb",
     },
   },
 });
@@ -135,6 +149,7 @@ export const frax = new StableBond({
   isBondable: {
     [NetworkID.Mainnet]: true,
     [NetworkID.Testnet]: true,
+    [NetworkID.Mandala]: true,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -143,6 +158,7 @@ export const frax = new StableBond({
   isLOLable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: false,
+    [NetworkID.Mandala]: false,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -152,6 +168,7 @@ export const frax = new StableBond({
   isClaimable: {
     [NetworkID.Mainnet]: true,
     [NetworkID.Testnet]: true,
+    [NetworkID.Mandala]: true,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -165,6 +182,10 @@ export const frax = new StableBond({
     [NetworkID.Testnet]: {
       bondAddress: "0xF651283543fB9D61A91f318b78385d187D300738",
       reserveAddress: "0x2F7249cb599139e560f0c81c269Ab9b04799E453",
+    },
+    [NetworkID.Mandala]: {
+      bondAddress: "0xf166Aa9dA66403430027eb2D069F74F80961f655",
+      reserveAddress: "0x99076ca7b1E2B182fCeBA3d9FEccBF44742267bb",
     },
   },
 });
@@ -180,6 +201,7 @@ export const lusd = new StableBond({
   isBondable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: true,
+    [NetworkID.Mandala]: false,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -188,6 +210,7 @@ export const lusd = new StableBond({
   isLOLable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: false,
+    [NetworkID.Mandala]: false,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -197,6 +220,7 @@ export const lusd = new StableBond({
   isClaimable: {
     [NetworkID.Mainnet]: true,
     [NetworkID.Testnet]: true,
+    [NetworkID.Mandala]: false,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -228,6 +252,7 @@ export const eth = new CustomBond({
   isBondable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: true,
+    [NetworkID.Mandala]: true,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -236,6 +261,7 @@ export const eth = new CustomBond({
   isLOLable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: false,
+    [NetworkID.Mandala]: false,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -245,6 +271,7 @@ export const eth = new CustomBond({
   isClaimable: {
     [NetworkID.Mainnet]: true,
     [NetworkID.Testnet]: true,
+    [NetworkID.Mandala]: true,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -258,6 +285,11 @@ export const eth = new CustomBond({
     [NetworkID.Testnet]: {
       bondAddress: "0xca7b90f8158A4FAA606952c023596EE6d322bcf0",
       reserveAddress: "0xc778417e063141139fce010982780140aa0cd5ab",
+    },
+    // TODO: Deploy wETH on Mandala
+    [NetworkID.Mandala]: {
+      bondAddress: "0xf166Aa9dA66403430027eb2D069F74F80961f655",
+      reserveAddress: "0x99076ca7b1E2B182fCeBA3d9FEccBF44742267bb",
     },
   },
   customTreasuryBalanceFunc: async function (this: CustomBond, networkID, provider) {
@@ -285,6 +317,7 @@ export const cvx = new CustomBond({
   isBondable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: false,
+    [NetworkID.Mandala]: false,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -293,6 +326,7 @@ export const cvx = new CustomBond({
   isLOLable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: false,
+    [NetworkID.Mandala]: false,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -302,6 +336,7 @@ export const cvx = new CustomBond({
   isClaimable: {
     [NetworkID.Mainnet]: true,
     [NetworkID.Testnet]: true,
+    [NetworkID.Mandala]: true,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -315,6 +350,11 @@ export const cvx = new CustomBond({
     [NetworkID.Testnet]: {
       bondAddress: "0xd43940687f6e76056789d00c43A40939b7a559b5",
       reserveAddress: "0xB2180448f8945C8Cc8AE9809E67D6bd27d8B2f2C", // using DAI per `principal` address
+      // reserveAddress: "0x6761Cb314E39082e08e1e697eEa23B6D1A77A34b", // guessed
+    },
+    [NetworkID.Mandala]: {
+      bondAddress: "0x412131331282B0F3F6eC32Be6b3053daE83C7DaF",
+      reserveAddress: "0xE10Be81C121fc5E9CFfFBfA2A3589a96021bD346", // using DAI per `principal` address
       // reserveAddress: "0x6761Cb314E39082e08e1e697eEa23B6D1A77A34b", // guessed
     },
   },
@@ -342,6 +382,7 @@ export const cvx_expired = new CustomBond({
   isBondable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: false,
+    [NetworkID.Mandala]: false,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -350,6 +391,7 @@ export const cvx_expired = new CustomBond({
   isLOLable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: false,
+    [NetworkID.Mandala]: false,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -359,6 +401,7 @@ export const cvx_expired = new CustomBond({
   isClaimable: {
     [NetworkID.Mainnet]: true,
     [NetworkID.Testnet]: true,
+    [NetworkID.Mandala]: true,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -372,6 +415,11 @@ export const cvx_expired = new CustomBond({
     [NetworkID.Testnet]: {
       bondAddress: "0xd43940687f6e76056789d00c43A40939b7a559b5",
       reserveAddress: "0xB2180448f8945C8Cc8AE9809E67D6bd27d8B2f2C", // using DAI per `principal` address
+      // reserveAddress: "0x6761Cb314E39082e08e1e697eEa23B6D1A77A34b", // guessed
+    },
+    [NetworkID.Mandala]: {
+      bondAddress: "0x412131331282B0F3F6eC32Be6b3053daE83C7DaF",
+      reserveAddress: "0xE10Be81C121fc5E9CFfFBfA2A3589a96021bD346", // using DAI per `principal` address
       // reserveAddress: "0x6761Cb314E39082e08e1e697eEa23B6D1A77A34b", // guessed
     },
   },
@@ -396,6 +444,7 @@ export const ohm_dai = new LPBond({
   isBondable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: true,
+    [NetworkID.Mandala]: true,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -404,6 +453,7 @@ export const ohm_dai = new LPBond({
   isLOLable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: false,
+    [NetworkID.Mandala]: false,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -413,6 +463,7 @@ export const ohm_dai = new LPBond({
   isClaimable: {
     [NetworkID.Mainnet]: true,
     [NetworkID.Testnet]: true,
+    [NetworkID.Mandala]: true,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -426,6 +477,11 @@ export const ohm_dai = new LPBond({
     [NetworkID.Testnet]: {
       bondAddress: "0xcF449dA417cC36009a1C6FbA78918c31594B9377",
       reserveAddress: "0x8D5a22Fb6A1840da602E56D1a260E56770e0bCE2",
+    },
+    [NetworkID.Mandala]: {
+      bondAddress: "0x412131331282B0F3F6eC32Be6b3053daE83C7DaF",
+      reserveAddress: "0xE10Be81C121fc5E9CFfFBfA2A3589a96021bD346", // using DAI per `principal` address
+      // reserveAddress: "0x6761Cb314E39082e08e1e697eEa23B6D1A77A34b", // guessed
     },
   },
   lpUrl:
@@ -444,6 +500,7 @@ export const ohm_frax = new LPBond({
   isBondable: {
     [NetworkID.Mainnet]: true,
     [NetworkID.Testnet]: true,
+    [NetworkID.Mandala]: true,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -452,6 +509,7 @@ export const ohm_frax = new LPBond({
   isLOLable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: false,
+    [NetworkID.Mandala]: false,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -461,6 +519,7 @@ export const ohm_frax = new LPBond({
   isClaimable: {
     [NetworkID.Mainnet]: true,
     [NetworkID.Testnet]: true,
+    [NetworkID.Mandala]: true,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -474,6 +533,10 @@ export const ohm_frax = new LPBond({
     [NetworkID.Testnet]: {
       bondAddress: "0x7BB53Ef5088AEF2Bb073D9C01DCa3a1D484FD1d2",
       reserveAddress: "0x11BE404d7853BDE29A3e73237c952EcDCbBA031E",
+    },
+    [NetworkID.Mandala]: {
+      bondAddress: "0xf166Aa9dA66403430027eb2D069F74F80961f655",
+      reserveAddress: "0x99076ca7b1E2B182fCeBA3d9FEccBF44742267bb",
     },
   },
   lpUrl:
@@ -492,6 +555,7 @@ export const ohm_fraxOld = new LPBond({
   isBondable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: false,
+    [NetworkID.Mandala]: false,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -500,6 +564,7 @@ export const ohm_fraxOld = new LPBond({
   isLOLable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: false,
+    [NetworkID.Mandala]: false,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -509,6 +574,7 @@ export const ohm_fraxOld = new LPBond({
   isClaimable: {
     [NetworkID.Mainnet]: true,
     [NetworkID.Testnet]: true,
+    [NetworkID.Mandala]: true,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -522,6 +588,10 @@ export const ohm_fraxOld = new LPBond({
     [NetworkID.Testnet]: {
       bondAddress: "0x7BB53Ef5088AEF2Bb073D9C01DCa3a1D484FD1d2",
       reserveAddress: "0x11BE404d7853BDE29A3e73237c952EcDCbBA031E",
+    },
+    [NetworkID.Mandala]: {
+      bondAddress: "0xf166Aa9dA66403430027eb2D069F74F80961f655",
+      reserveAddress: "0x99076ca7b1E2B182fCeBA3d9FEccBF44742267bb",
     },
   },
   lpUrl:
@@ -540,6 +610,7 @@ export const ohm_lusd = new LPBond({
   isBondable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: false,
+    [NetworkID.Mandala]: false,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -548,6 +619,7 @@ export const ohm_lusd = new LPBond({
   isLOLable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: false,
+    [NetworkID.Mandala]: false,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -557,6 +629,7 @@ export const ohm_lusd = new LPBond({
   isClaimable: {
     [NetworkID.Mainnet]: true,
     [NetworkID.Testnet]: true,
+    [NetworkID.Mandala]: true,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -571,6 +644,11 @@ export const ohm_lusd = new LPBond({
       // NOTE (appleseed-lusd): using ohm-dai rinkeby contracts
       bondAddress: "0xcF449dA417cC36009a1C6FbA78918c31594B9377",
       reserveAddress: "0x8D5a22Fb6A1840da602E56D1a260E56770e0bCE2",
+    },
+    [NetworkID.Mandala]: {
+      bondAddress: "0x412131331282B0F3F6eC32Be6b3053daE83C7DaF",
+      reserveAddress: "0xE10Be81C121fc5E9CFfFBfA2A3589a96021bD346", // using DAI per `principal` address
+      // reserveAddress: "0x6761Cb314E39082e08e1e697eEa23B6D1A77A34b", // guessed
     },
   },
   lpUrl:
@@ -589,6 +667,7 @@ export const ohm_weth = new CustomBond({
   isBondable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: true,
+    [NetworkID.Mandala]: true,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -597,6 +676,7 @@ export const ohm_weth = new CustomBond({
   isLOLable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: false,
+    [NetworkID.Mandala]: false,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -606,6 +686,7 @@ export const ohm_weth = new CustomBond({
   isClaimable: {
     [NetworkID.Mainnet]: true,
     [NetworkID.Testnet]: true,
+    [NetworkID.Mandala]: true,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -621,6 +702,11 @@ export const ohm_weth = new CustomBond({
       // NOTE (unbanksy): using ohm-dai rinkeby contracts
       bondAddress: "0xcF449dA417cC36009a1C6FbA78918c31594B9377",
       reserveAddress: "0x8D5a22Fb6A1840da602E56D1a260E56770e0bCE2",
+    },
+    [NetworkID.Mandala]: {
+      bondAddress: "0x412131331282B0F3F6eC32Be6b3053daE83C7DaF",
+      reserveAddress: "0xE10Be81C121fc5E9CFfFBfA2A3589a96021bD346", // using DAI per `principal` address
+      // reserveAddress: "0x6761Cb314E39082e08e1e697eEa23B6D1A77A34b", // guessed
     },
   },
   bondType: BondType.LP,
@@ -667,6 +753,7 @@ export const ohm_wethOld = new CustomBond({
   isBondable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: true,
+    [NetworkID.Mandala]: true,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -675,6 +762,7 @@ export const ohm_wethOld = new CustomBond({
   isLOLable: {
     [NetworkID.Mainnet]: false,
     [NetworkID.Testnet]: false,
+    [NetworkID.Mandala]: false,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -684,6 +772,7 @@ export const ohm_wethOld = new CustomBond({
   isClaimable: {
     [NetworkID.Mainnet]: true,
     [NetworkID.Testnet]: true,
+    [NetworkID.Mandala]: true,
     [NetworkID.Arbitrum]: false,
     [NetworkID.ArbitrumTestnet]: false,
     [NetworkID.Avalanche]: false,
@@ -698,6 +787,11 @@ export const ohm_wethOld = new CustomBond({
       // NOTE (unbanksy): using ohm-dai rinkeby contracts
       bondAddress: "0xcF449dA417cC36009a1C6FbA78918c31594B9377",
       reserveAddress: "0x8D5a22Fb6A1840da602E56D1a260E56770e0bCE2",
+    },
+    [NetworkID.Mandala]: {
+      bondAddress: "0x412131331282B0F3F6eC32Be6b3053daE83C7DaF",
+      reserveAddress: "0xE10Be81C121fc5E9CFfFBfA2A3589a96021bD346", // using DAI per `principal` address
+      // reserveAddress: "0x6761Cb314E39082e08e1e697eEa23B6D1A77A34b", // guessed
     },
   },
   bondType: BondType.LP,

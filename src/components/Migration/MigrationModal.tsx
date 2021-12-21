@@ -101,6 +101,7 @@ function MigrationModal({ open, handleClose }: { open: boolean; handleClose: any
   const onMigrate = () => dispatch(migrateAll({ provider, address, networkID: networkId }));
   const currentIndex = useAppSelector(state => Number(state.app.currentIndexV1!));
 
+  const balance = useAppSelector(state => state.account.balances);
   const currentOhmBalance = useAppSelector(state => Number(state.account.balances.ohmV1));
   const currentSOhmBalance = useAppSelector(state => Number(state.account.balances.sohmV1));
   const currentWSOhmBalance = useAppSelector(state => Number(state.account.balances.wsohm));
@@ -120,11 +121,12 @@ function MigrationModal({ open, handleClose }: { open: boolean; handleClose: any
   const ohmInUSD = formatCurrency(marketPrice! * currentOhmBalance);
   const sOhmInUSD = formatCurrency(marketPrice! * currentSOhmBalance);
   const wsOhmInUSD = formatCurrency(wsOhmPrice * currentWSOhmBalance);
-
+  // console.log({ balance });
+  // console.log({ currentIndex });
   useEffect(() => {
     if (
       networkId &&
-      (networkId === 1 || networkId === 4) &&
+      (networkId === 1 || networkId === 4 || networkId === 595) &&
       isAllApproved &&
       (currentOhmBalance || currentSOhmBalance || currentWSOhmBalance)
     ) {

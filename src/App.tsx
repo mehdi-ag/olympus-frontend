@@ -146,7 +146,7 @@ function App() {
       }
       dispatch(loadAppDetails({ networkID: networkId, provider: loadProvider }));
       // NOTE (appleseed) - tech debt - better network filtering for active bonds
-      if (networkId === 1 || networkId === 4) {
+      if (networkId === 1 || networkId === 4 || networkId === 595) {
         bonds.map(bond => {
           dispatch(calcBondDetails({ bond, value: "", provider: loadProvider, networkID: networkId }));
         });
@@ -179,7 +179,7 @@ function App() {
   );
 
   const oldAssetsDetected = useAppSelector(state => {
-    if (networkId && (networkId === 1 || networkId === 4)) {
+    if (networkId && (networkId === 1 || networkId === 4 || networkId === 595)) {
       return (
         state.account.balances &&
         (Number(state.account.balances.sohmV1) ||
